@@ -1,10 +1,10 @@
-ï»¿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aditya Awathare â€” Portfolio</title>
-  <meta name="description" content="Portfolio of Aditya Awathare â€” Backend &amp; Cloud Engineer, Django Developer, AWS Specialist.">
+  <title>Aditya Awathare — Portfolio</title>
+  <meta name="description" content="Portfolio of Aditya Awathare — Backend &amp; Cloud Engineer, Django Developer, AWS Specialist.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -559,35 +559,219 @@
     </div>
   </section>
 
+  <!-- ============================================================
+       CERTIFICATE MODAL
+  ============================================================ -->
+  <div id="certModal" style="
+    display:none; position:fixed; inset:0; z-index:9000;
+    background:rgba(4,6,14,0.88); backdrop-filter:blur(18px);
+    align-items:center; justify-content:center; padding:1.5rem;">
+    <div style="
+      position:relative; width:100%; max-width:900px;
+      background:var(--bg-2); border:1px solid var(--border-glow);
+      border-radius:var(--radius-lg); overflow:hidden;
+      box-shadow:0 24px 80px rgba(0,0,0,0.7);">
+      <!-- modal header -->
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;border-bottom:1px solid var(--border);">
+        <span id="certModalTitle" style="font-weight:700;font-size:1rem;"></span>
+        <div style="display:flex;gap:0.75rem;align-items:center;">
+          <button onclick="closeCertModal()" style="
+            background:rgba(255,255,255,0.07);border:1px solid var(--border);
+            border-radius:8px;color:var(--text);width:32px;height:32px;
+            font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;
+            transition:background var(--t);" onmouseover="this.style.background='rgba(255,255,255,0.14)'"
+            onmouseout="this.style.background='rgba(255,255,255,0.07)'">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      <!-- iframe -->
+      <iframe id="certModalFrame" src="" title="Certificate"
+        style="width:100%;height:520px;border:none;display:block;background:#fff;"></iframe>
+    </div>
+  </div>
+
   <!-- CERTIFICATIONS -->
   <section id="certifications" class="z2" style="padding:8rem 0; background:radial-gradient(ellipse at 30% 50%,rgba(124,110,255,0.05) 0%,transparent 60%);">
+    <style>
+      .cert-card {
+        background:var(--surface); border:1px solid var(--border);
+        border-radius:var(--radius-lg); overflow:hidden;
+        display:flex; flex-direction:column;
+        transition:border-color var(--t), transform var(--t), box-shadow var(--t);
+        cursor:default;
+      }
+      .cert-card:hover {
+        border-color:var(--border-glow);
+        transform:translateY(-7px);
+        box-shadow:0 20px 55px rgba(124,110,255,0.2);
+      }
+      .cert-thumb {
+        position:relative; height:180px; overflow:hidden;
+        background:#fff;
+      }
+      .cert-thumb img {
+        width:100%; height:100%; object-fit:cover; object-position:top;
+        transition:transform 0.5s var(--ease);
+        display:block;
+      }
+      .cert-card:hover .cert-thumb img { transform:scale(1.05); }
+      .cert-thumb-overlay {
+        position:absolute; inset:0;
+        background:linear-gradient(180deg,transparent 50%,rgba(8,10,19,0.7) 100%);
+        pointer-events:none;
+      }
+      .cert-badge {
+        position:absolute; top:0.7rem; right:0.7rem;
+        background:rgba(10,12,26,0.88); backdrop-filter:blur(12px);
+        border:1px solid rgba(124,110,255,0.35); border-radius:6px;
+        padding:0.2rem 0.6rem;
+        font-family:var(--mono); font-size:0.6rem; color:var(--accent);
+        font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
+      }
+      .cert-body { padding:1.2rem 1.3rem; flex:1; display:flex; flex-direction:column; gap:0.5rem; }
+      .cert-body h4 { font-size:0.95rem; font-weight:700; line-height:1.3; }
+      .cert-plat   { font-size:0.72rem; font-family:var(--mono); color:var(--muted); }
+      .cert-actions { display:flex; gap:0.6rem; margin-top:0.7rem; }
+      .cert-btn {
+        flex:1; display:inline-flex; align-items:center; justify-content:center; gap:0.4rem;
+        padding:0.52rem 0.5rem; border-radius:8px;
+        font-size:0.72rem; font-weight:600; font-family:var(--mono);
+        border:1px solid var(--border); background:var(--surface-2);
+        color:var(--muted); cursor:pointer;
+        transition:all var(--t);
+        text-decoration:none;
+      }
+      .cert-btn:hover { border-color:var(--border-glow); color:var(--text); background:rgba(124,110,255,0.1); }
+      .cert-btn.primary { background:rgba(124,110,255,0.12); border-color:rgba(124,110,255,0.35); color:var(--accent); }
+      .cert-btn.primary:hover { background:rgba(124,110,255,0.22); border-color:var(--accent); }
+    </style>
+
     <div class="container">
       <div style="text-align:center;margin-bottom:3.5rem;" data-aos="fade-up">
         <p class="label" style="justify-content:center;">Verified Knowledge</p>
         <h2 class="sec-title">Certifi<span class="g">cations</span></h2>
-        <p class="sec-sub" style="margin:0.65rem auto 0;">Credentials earned from globally recognised platforms.</p>
+        <p class="sec-sub" style="margin:0.65rem auto 0;">
+          Click <strong style="color:var(--accent)">Verify</strong> to view the live credential on HackerRank
+        </p>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem;">
-        <div class="cc" data-aos="fade-up" data-aos-delay="100">
-          <div class="cc-ico" style="background:linear-gradient(135deg,#1db954,#14833b);"><i class="fab fa-python"></i></div>
-          <h3>HackerRank &mdash; 2024</h3>
-          <span>Python Programming</span>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:2rem;">
+
+        <!-- Python -->
+        <div class="cert-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="cert-thumb">
+            <img src="images/python certificate.png" alt="Python Programming Certificate" loading="lazy">
+            <div class="cert-thumb-overlay"></div>
+            <span class="cert-badge">HackerRank</span>
+          </div>
+          <div class="cert-body">
+            <h4>Python Programming</h4>
+            <span class="cert-plat">HackerRank &middot; 2024</span>
+            <div class="cert-actions">
+              <button class="cert-btn primary"
+                onclick="openCertModal('Python Programming','https://www.hackerrank.com/certificates/iframe/302a65286ef4')">
+                <i class="fas fa-external-link-alt"></i> View Credential
+              </button>
+            </div>
+          </div>
         </div>
-        <div class="cc" data-aos="fade-up" data-aos-delay="150">
-          <div class="cc-ico" style="background:linear-gradient(135deg,#f57c00,#bf360c);"><i class="fas fa-database"></i></div>
-          <h3>HackerRank &mdash; 2024</h3>
-          <span>SQL (Advanced)</span>
+
+        <!-- SQL Advanced -->
+        <div class="cert-card" data-aos="fade-up" data-aos-delay="175">
+          <div class="cert-thumb">
+            <img src="images/SQL(Advanced) certificate - HackerRank.png" alt="SQL Advanced Certificate" loading="lazy">
+            <div class="cert-thumb-overlay"></div>
+            <span class="cert-badge">HackerRank</span>
+          </div>
+          <div class="cert-body">
+            <h4>SQL (Advanced)</h4>
+            <span class="cert-plat">HackerRank &middot; 2025</span>
+            <div class="cert-actions">
+              <button class="cert-btn primary"
+                onclick="openCertModal('SQL Advanced','https://www.hackerrank.com/certificates/iframe/a3b73e719e39')">
+                <i class="fas fa-external-link-alt"></i> View Credential
+              </button>
+            </div>
+          </div>
         </div>
-        <div class="cc" data-aos="fade-up" data-aos-delay="200">
-          <div class="cc-ico" style="background:linear-gradient(135deg,#f7df1e,#c79a00);"><i class="fab fa-js-square"></i></div>
-          <h3>HackerRank &mdash; 2024</h3>
-          <span>JavaScript Fundamentals</span>
+
+        <!-- JavaScript -->
+        <div class="cert-card" data-aos="fade-up" data-aos-delay="250">
+          <div class="cert-thumb">
+            <img src="images/JavaScript(Basic) certificate - HackerRank.png" alt="JavaScript Certificate" loading="lazy">
+            <div class="cert-thumb-overlay"></div>
+            <span class="cert-badge">HackerRank</span>
+          </div>
+          <div class="cert-body">
+            <h4>JavaScript (Basic)</h4>
+            <span class="cert-plat">HackerRank &middot; 2024</span>
+            <div class="cert-actions">
+              <button class="cert-btn primary"
+                onclick="openCertModal('JavaScript (Basic)','https://www.hackerrank.com/certificates/iframe/634a0d1acd7f')">
+                <i class="fas fa-external-link-alt"></i> View Credential
+              </button>
+            </div>
+          </div>
         </div>
-        <div class="cc" data-aos="fade-up" data-aos-delay="250">
-          <div class="cc-ico" style="background:linear-gradient(135deg,#2196f3,#0d47a1);"><i class="fab fa-css3-alt"></i></div>
-          <h3>HackerRank &mdash; 2024</h3>
-          <span>CSS Styling</span>
+
+        <!-- CSS -->
+        <div class="cert-card" data-aos="fade-up" data-aos-delay="325">
+          <div class="cert-thumb">
+            <img src="images/CSS.png" alt="CSS Certificate" loading="lazy">
+            <div class="cert-thumb-overlay"></div>
+            <span class="cert-badge">HackerRank</span>
+          </div>
+          <div class="cert-body">
+            <h4>CSS Styling</h4>
+            <span class="cert-plat">HackerRank &middot; 2024</span>
+            <div class="cert-actions">
+              <button class="cert-btn primary"
+                onclick="openCertModal('CSS Styling','https://www.hackerrank.com/certificates/iframe/190a5435d2e7')">
+                <i class="fas fa-external-link-alt"></i> View Credential
+              </button>
+            </div>
+          </div>
         </div>
+
+        <!-- NPTEL Cloud Computing -->
+        <div class="cert-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="cert-thumb">
+            <img src="images/Cloud Computing.png" alt="NPTEL Cloud Computing Certificate" loading="lazy">
+            <div class="cert-thumb-overlay"></div>
+            <span class="cert-badge" style="background:rgba(10,12,26,0.88);border-color:rgba(0,216,255,0.4);color:var(--accent-2);">NPTEL</span>
+          </div>
+          <div class="cert-body">
+            <h4>Cloud Computing</h4>
+            <span class="cert-plat">NPTEL &middot; 2025</span>
+            <div class="cert-actions">
+              <button class="cert-btn primary"
+                onclick="openCertModal('Cloud Computing — NPTEL 2025','assets/Cloud Computing.pdf')">
+                <i class="fas fa-eye"></i> View Certificate
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- NPTEL Social Networks -->
+        <div class="cert-card" data-aos="fade-up" data-aos-delay="475">
+          <div class="cert-thumb">
+            <img src="images/Social Networks.png" alt="NPTEL Social Networks Certificate" loading="lazy">
+            <div class="cert-thumb-overlay"></div>
+            <span class="cert-badge" style="background:rgba(10,12,26,0.88);border-color:rgba(0,216,255,0.4);color:var(--accent-2);">NPTEL</span>
+          </div>
+          <div class="cert-body">
+            <h4>Social Networks</h4>
+            <span class="cert-plat">NPTEL &middot; 2025</span>
+            <div class="cert-actions">
+              <button class="cert-btn primary"
+                onclick="openCertModal('Social Networks — NPTEL 2025','assets/Social Networks.pdf')">
+                <i class="fas fa-eye"></i> View Certificate
+              </button>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -682,6 +866,22 @@
       });
     }, { threshold:0.3 });
     document.querySelectorAll('.bar-fill').forEach(f => barObs.observe(f));
+
+    // -- Certificate modal -------------------------
+    const certModal = document.getElementById('certModal');
+    function openCertModal(title, iframeUrl) {
+      document.getElementById('certModalTitle').textContent = title;
+      document.getElementById('certModalFrame').src = iframeUrl;
+      certModal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeCertModal() {
+      certModal.style.display = 'none';
+      document.getElementById('certModalFrame').src = '';
+      document.body.style.overflow = '';
+    }
+    certModal.addEventListener('click', e => { if (e.target === certModal) closeCertModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCertModal(); });
   </script>
 </body>
 </html>
