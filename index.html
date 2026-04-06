@@ -65,6 +65,16 @@
       mask-image: radial-gradient(ellipse at 50% 25%, black 15%, transparent 70%);
     }
 
+    /* PARTICLES */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
     .container { max-width:1160px; margin:0 auto; padding:0 2rem; }
     .z2 { position:relative; z-index:2; }
 
@@ -266,6 +276,8 @@
   </style>
 </head>
 <body>
+  <!-- PARTICLES BACKGROUND -->
+  <div id="particles-js"></div>
 
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
@@ -613,20 +625,22 @@
         box-shadow:0 20px 55px rgba(124,110,255,0.2);
       }
       .cert-thumb {
-        position:relative; height:180px; overflow:hidden;
-        background:#fff;
+        position:relative; height:120px; overflow:hidden;
+        background:linear-gradient(135deg, var(--surface), var(--surface-2));
+        display:flex; align-items:center; justify-content:center;
+        border-bottom:1px solid var(--border);
       }
-      .cert-thumb img {
-        width:100%; height:100%; object-fit:cover; object-position:top;
-        transition:transform 0.5s var(--ease);
-        display:block;
+      .cert-icon {
+        font-size:3rem;
+        transition:transform 0.3s var(--ease);
       }
-      .cert-card:hover .cert-thumb img { transform:scale(1.05); }
-      .cert-thumb-overlay {
-        position:absolute; inset:0;
-        background:linear-gradient(180deg,transparent 50%,rgba(8,10,19,0.7) 100%);
-        pointer-events:none;
-      }
+      .cert-card:hover .cert-icon { transform:scale(1.15); }
+      .cert-icon.python { color: #3776ab; }
+      .cert-icon.sql { color: #00d4ff; }
+      .cert-icon.javascript { color: #f7df1e; }
+      .cert-icon.css { color: #1572b6; }
+      .cert-icon.cloud { color: #ff9900; }
+      .cert-icon.network { color: #4285f4; }
       .cert-badge {
         position:absolute; top:0.7rem; right:0.7rem;
         background:rgba(10,12,26,0.88); backdrop-filter:blur(12px);
@@ -667,8 +681,7 @@
         <!-- Python -->
         <div class="cert-card" data-aos="fade-up" data-aos-delay="100">
           <div class="cert-thumb">
-            <img src="images/python certificate.png" alt="Python Programming Certificate" loading="lazy">
-            <div class="cert-thumb-overlay"></div>
+            <i class="cert-icon fab fa-python python"></i>
             <span class="cert-badge">HackerRank</span>
           </div>
           <div class="cert-body">
@@ -686,8 +699,7 @@
         <!-- SQL Advanced -->
         <div class="cert-card" data-aos="fade-up" data-aos-delay="175">
           <div class="cert-thumb">
-            <img src="images/SQL(Advanced) certificate - HackerRank.png" alt="SQL Advanced Certificate" loading="lazy">
-            <div class="cert-thumb-overlay"></div>
+            <i class="cert-icon fas fa-database sql"></i>
             <span class="cert-badge">HackerRank</span>
           </div>
           <div class="cert-body">
@@ -705,8 +717,7 @@
         <!-- JavaScript -->
         <div class="cert-card" data-aos="fade-up" data-aos-delay="250">
           <div class="cert-thumb">
-            <img src="images/JavaScript(Basic) certificate - HackerRank.png" alt="JavaScript Certificate" loading="lazy">
-            <div class="cert-thumb-overlay"></div>
+            <i class="cert-icon fab fa-js-square javascript"></i>
             <span class="cert-badge">HackerRank</span>
           </div>
           <div class="cert-body">
@@ -724,8 +735,7 @@
         <!-- CSS -->
         <div class="cert-card" data-aos="fade-up" data-aos-delay="325">
           <div class="cert-thumb">
-            <img src="images/CSS.png" alt="CSS Certificate" loading="lazy">
-            <div class="cert-thumb-overlay"></div>
+            <i class="cert-icon fab fa-css3-alt css"></i>
             <span class="cert-badge">HackerRank</span>
           </div>
           <div class="cert-body">
@@ -743,8 +753,7 @@
         <!-- NPTEL Cloud Computing -->
         <div class="cert-card" data-aos="fade-up" data-aos-delay="400">
           <div class="cert-thumb">
-            <img src="images/Cloud Computing.png" alt="NPTEL Cloud Computing Certificate" loading="lazy">
-            <div class="cert-thumb-overlay"></div>
+            <i class="cert-icon fas fa-cloud cloud"></i>
             <span class="cert-badge" style="background:rgba(10,12,26,0.88);border-color:rgba(0,216,255,0.4);color:var(--accent-2);">NPTEL</span>
           </div>
           <div class="cert-body">
@@ -752,7 +761,7 @@
             <span class="cert-plat">NPTEL &middot; 2025</span>
             <div class="cert-actions">
               <button class="cert-btn primary"
-                onclick="openCertModal('Cloud Computing � NPTEL 2025','assets/Cloud Computing.pdf')">
+                onclick="openCertModal('Cloud Computing — NPTEL 2025','assets/Cloud Computing.pdf')">
                 <i class="fas fa-eye"></i> View Certificate
               </button>
             </div>
@@ -762,8 +771,7 @@
         <!-- NPTEL Social Networks -->
         <div class="cert-card" data-aos="fade-up" data-aos-delay="475">
           <div class="cert-thumb">
-            <img src="images/Social Networks.png" alt="NPTEL Social Networks Certificate" loading="lazy">
-            <div class="cert-thumb-overlay"></div>
+            <i class="cert-icon fas fa-share-alt network"></i>
             <span class="cert-badge" style="background:rgba(10,12,26,0.88);border-color:rgba(0,216,255,0.4);color:var(--accent-2);">NPTEL</span>
           </div>
           <div class="cert-body">
@@ -771,7 +779,7 @@
             <span class="cert-plat">NPTEL &middot; 2025</span>
             <div class="cert-actions">
               <button class="cert-btn primary"
-                onclick="openCertModal('Social Networks � NPTEL 2025','assets/Social Networks.pdf')">
+                onclick="openCertModal('Social Networks — NPTEL 2025','assets/Social Networks.pdf')">
                 <i class="fas fa-eye"></i> View Certificate
               </button>
             </div>
@@ -888,6 +896,132 @@
     }
     certModal.addEventListener('click', e => { if (e.target === certModal) closeCertModal(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCertModal(); });
+  </script>
+
+  <!-- Custom Particle System -->
+  <script>
+    class ParticleSystem {
+      constructor() {
+        this.canvas = document.createElement('canvas');
+        this.ctx = this.canvas.getContext('2d');
+        this.particles = [];
+        this.mouse = { x: 0, y: 0 };
+        this.init();
+      }
+
+      init() {
+        const container = document.getElementById('particles-js');
+        container.appendChild(this.canvas);
+        this.resize();
+        this.createParticles();
+        this.addEventListeners();
+        this.animate();
+      }
+
+      resize() {
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+        this.canvas.style.position = 'absolute';
+        this.canvas.style.top = '0';
+        this.canvas.style.left = '0';
+      }
+
+      createParticles() {
+        const count = Math.floor((this.canvas.width * this.canvas.height) / 15000);
+        for (let i = 0; i < count; i++) {
+          this.particles.push({
+            x: Math.random() * this.canvas.width,
+            y: Math.random() * this.canvas.height,
+            vx: (Math.random() - 0.5) * 0.5,
+            vy: (Math.random() - 0.5) * 0.5,
+            size: Math.random() * 3 + 1
+          });
+        }
+      }
+
+      addEventListeners() {
+        window.addEventListener('resize', () => this.resize());
+        window.addEventListener('mousemove', (e) => {
+          this.mouse.x = e.clientX;
+          this.mouse.y = e.clientY;
+        });
+        window.addEventListener('click', (e) => {
+          for (let i = 0; i < 4; i++) {
+            this.particles.push({
+              x: e.clientX + (Math.random() - 0.5) * 50,
+              y: e.clientY + (Math.random() - 0.5) * 50,
+              vx: (Math.random() - 0.5) * 1,
+              vy: (Math.random() - 0.5) * 1,
+              size: Math.random() * 3 + 1
+            });
+          }
+        });
+      }
+
+      animate() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        
+        // Update and draw particles
+        this.particles.forEach((particle, i) => {
+          particle.x += particle.vx;
+          particle.y += particle.vy;
+
+          // Wrap around edges
+          if (particle.x > this.canvas.width) particle.x = 0;
+          if (particle.x < 0) particle.x = this.canvas.width;
+          if (particle.y > this.canvas.height) particle.y = 0;
+          if (particle.y < 0) particle.y = this.canvas.height;
+
+          // Draw particle
+          this.ctx.beginPath();
+          this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+          this.ctx.fillStyle = '#7c6eff';
+          this.ctx.globalAlpha = 0.6;
+          this.ctx.fill();
+
+          // Draw connections between particles
+          this.particles.forEach((otherParticle, j) => {
+            if (i !== j) {
+              const distance = Math.sqrt(
+                Math.pow(particle.x - otherParticle.x, 2) + 
+                Math.pow(particle.y - otherParticle.y, 2)
+              );
+              if (distance < 120) {
+                this.ctx.beginPath();
+                this.ctx.moveTo(particle.x, particle.y);
+                this.ctx.lineTo(otherParticle.x, otherParticle.y);
+                this.ctx.strokeStyle = '#7c6eff';
+                this.ctx.globalAlpha = (120 - distance) / 120 * 0.3;
+                this.ctx.lineWidth = 0.5;
+                this.ctx.stroke();
+              }
+            }
+          });
+
+          // Draw mouse connections
+          const mouseDistance = Math.sqrt(
+            Math.pow(particle.x - this.mouse.x, 2) + 
+            Math.pow(particle.y - this.mouse.y, 2)
+          );
+          if (mouseDistance < 150) {
+            this.ctx.beginPath();
+            this.ctx.moveTo(particle.x, particle.y);
+            this.ctx.lineTo(this.mouse.x, this.mouse.y);
+            this.ctx.strokeStyle = '#00d8ff';
+            this.ctx.globalAlpha = (150 - mouseDistance) / 150 * 0.8;
+            this.ctx.lineWidth = 1;
+            this.ctx.stroke();
+          }
+        });
+
+        requestAnimationFrame(() => this.animate());
+      }
+    }
+
+    // Initialize particle system when page loads
+    window.addEventListener('load', () => {
+      new ParticleSystem();
+    });
   </script>
 </body>
 </html>
